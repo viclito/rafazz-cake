@@ -1,0 +1,241 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(var(--bg-rgb), 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-family: var(--font-playfair);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+.nav {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.navLink {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.navLink:hover {
+  opacity: 1;
+}
+
+.dashboardLink {
+  color: #0071e3;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 6px 12px;
+  background: rgba(0, 113, 227, 0.1);
+  border-radius: 980px;
+  transition: background 0.2s;
+}
+
+.dashboardLink:hover {
+  background: rgba(0, 113, 227, 0.2);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cartBtn {
+  position: relative;
+  text-decoration: none;
+  font-size: 20px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cartBadge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ff3b30;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  border: 2px solid var(--background);
+}
+
+.authButtons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.loginBtn {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.signupBtn {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 980px;
+  transition: all 0.2s;
+}
+
+.signupBtn:hover {
+  border-color: var(--text);
+  background: var(--surface-hover);
+}
+
+.profileLink {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.cta {
+  background: var(--text);
+  color: var(--background);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 980px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+  text-decoration: none;
+}
+
+.cta:hover {
+  transform: scale(1.02);
+  opacity: 0.9;
+}
+
+.desktopAuth {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 101;
+}
+
+.hamburger span {
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  position: relative;
+  transform-origin: 1px;
+}
+
+.hamburger.open span:first-child {
+  transform: rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+.mobileMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.mobileNavLink {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.mobileAuth {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.mobileCta {
+  text-align: center;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 16px 20px;
+  }
+  
+  .nav {
+    display: none;
+  }
+  
+  .desktopAuth {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}

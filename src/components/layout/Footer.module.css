@@ -1,0 +1,58 @@
+.footer {
+  background-color: var(--surface);
+  color: var(--text-secondary);
+  padding: 4rem 2rem 2rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.75rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.column h3 {
+  color: var(--text);
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.column p, .column a {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+}
+
+.column a:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+.bottom {
+  max-width: 980px;
+  margin: 3rem auto 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-secondary);
+  display: flex;
+  justify-content: space-between;
+  opacity: 0.6;
+}
+
+.developerLink {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.developerLink:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}

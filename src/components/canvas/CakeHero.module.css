@@ -1,0 +1,16 @@
+.container {
+  height: 80vh;
+  width: 100%;
+  position: relative;
+  background: var(--hero-gradient);
+  transition: background 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .container,
+  .container canvas,
+  .container div {
+    pointer-events: none !important;
+    touch-action: auto !important;
+  }
+}

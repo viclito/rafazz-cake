@@ -1,0 +1,262 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 120px 20px 80px;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--border);
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 4px 0;
+}
+
+.email {
+  color: var(--text-secondary);
+  font-size: 16px;
+  margin: 0;
+}
+
+.logoutBtn {
+  padding: 10px 20px;
+  background: var(--surface-hover);
+  border: none;
+  border-radius: 980px;
+  color: var(--text);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.logoutBtn:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.sectionTitle {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: var(--text);
+}
+
+.ordersList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.orderCard {
+  background: var(--surface);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--border);
+}
+
+.orderHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.orderId {
+  display: block;
+  font-weight: 600;
+  color: var(--text);
+  font-size: 16px;
+}
+
+.orderDate {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.status {
+  padding: 6px 12px;
+  border-radius: 980px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status.pending { background: rgba(255, 149, 0, 0.1); color: #ff9500; }
+.status.confirmed { background: rgba(0, 113, 227, 0.1); color: #0071e3; }
+.status.preparing { background: rgba(52, 199, 89, 0.1); color: #34c759; }
+.status.ready { background: rgba(52, 199, 89, 0.1); color: #34c759; }
+.status.delivered { background: var(--surface-hover); color: var(--text-secondary); }
+.status.cancelled { background: rgba(255, 59, 48, 0.1); color: #ff3b30; }
+
+.orderItems {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.itemRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.orderFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.total {
+  display: flex;
+  flex-direction: column;
+}
+
+.total span:first-child {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.total span:last-child {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.deliveryTime {
+  text-align: right;
+  font-size: 14px;
+}
+
+.deliveryTime span {
+  color: var(--text-secondary);
+  margin-right: 6px;
+}
+
+.deliveryTime strong {
+  color: #0071e3;
+}
+
+.loading {
+  text-align: center;
+  padding: 100px;
+  color: var(--text-secondary);
+}
+
+.emptyState {
+  text-align: center;
+  padding: 60px;
+  background: var(--surface);
+  border-radius: 18px;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+  
+  .orderFooter {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .deliveryTime {
+    text-align: left;
+  }
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+.messagesList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.messageCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.messageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.messageDate {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.repliedBadge {
+  background: #34c759;
+  color: white;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 99px;
+  font-weight: 500;
+}
+
+.messageText {
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.replyBox {
+  margin-top: 16px;
+  background: var(--surface-hover);
+  padding: 16px;
+  border-radius: 8px;
+  border-left: 3px solid #0071e3;
+}
+
+.replyHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.replyLabel {
+  font-weight: 600;
+  font-size: 13px;
+  color: #0071e3;
+}
+
+.replyDate {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.replyContent {
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
