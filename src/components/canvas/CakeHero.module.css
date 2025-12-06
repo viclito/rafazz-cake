@@ -1,9 +1,11 @@
 .container {
-  height: 80vh;
+  height: 100%;
   width: 100%;
-  position: relative;
-  background: var(--hero-gradient);
-  transition: background 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #000;
+  z-index: 1;
 }
 
 @media (max-width: 768px) {

@@ -1,10 +1,9 @@
-import CakeHero from '@/components/canvas/CakeHero';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './page.module.css';
 import connectDB from '@/lib/mongodb';
 import HomeImage from '@/models/HomeImage';
-
+import CakeHeroWrapper from '@/components/home/CakeHeroWrapper';
 import OffersSection from '@/components/home/OffersSection';
 
 async function getHomeImages() {
@@ -35,7 +34,7 @@ export default async function Home() {
           {/* <h1 className={styles.heroTitle}>Rafazz Pro</h1> */}
           {/* <p className={styles.heroSubtitle}>Titanium. So strong. So light. So sweet.</p> */}
         </div>
-        <CakeHero />
+        <CakeHeroWrapper />
       </div>
 
       <OffersSection />

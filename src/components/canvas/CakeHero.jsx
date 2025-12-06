@@ -62,7 +62,12 @@ export default function CakeHero() {
   
   return (
     <div className={styles.container}>
-      <Canvas camera={{ position: [0, 2, 8], fov: 45 }} shadows>
+      <Canvas 
+        camera={{ position: [0, 2, 8], fov: 45 }} 
+        shadows 
+        gl={{ preserveDrawingBuffer: true, antialias: true }}
+        style={{ background: 'transparent' }}
+      >
         <ambientLight intensity={1.5} />
         <spotLight 
           position={[10, 10, 10]} 
