@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './Sidebar.module.css';
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen, onClose }) {
   const { data: session } = useSession();
   const pathname = usePathname();
 
@@ -18,36 +18,46 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside className={styles.sidebar}>
-      <div className={styles.header}>
-        <h2 className={styles.logo}>Rafazz Admin</h2>
-        <p className={styles.user}>{session?.user?.name}</p>
-        <Link href="/" className={styles.backToSite}>
-          ← Back to Site
-        </Link>
-      </div>
-
-      <nav className={styles.nav}>
-        {navItems.map((item) => (
-          <Link
-            key={item.path}
-            href={item.path}
-            className={`${styles.navItem} ${
-              pathname === item.path ? styles.active : ''
-            }`}
-          >
-            <span className={styles.icon}>{item.icon}</span>
-            <span>{item.name}</span>
+    <>
+      <div 
+        className={`${styles.overlay} ${isOpen ? styles.show : ''}`} 
+        onClick={onClose}
+      />
+      <aside className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
+        <div className={styles.header}>
+          <div className={styles.headerTop}>
+            <h2 className={styles.logo}>Rafazz Admin</h2>
+            <button className={styles.closeBtn} onClick={onClose}>×</button>
+          </div>
+          <p className={styles.user}>{session?.user?.name}</p>
+          <Link href="/" className={styles.backToSite}>
+            ← Back to Site
           </Link>
-        ))}
-      </nav>
+        </div>
 
-      <div className={styles.footer}>
-        <button onClick={() => signOut({ callbackUrl: '/admin/login' })} className={styles.logoutBtn}>
-          <span className={styles.icon}>→</span>
-          <span>Logout</span>
-        </button>
-      </div>
-    </aside>
+        <nav className={styles.nav}>
+          {navItems.map((item) => (
+            <Link
+              key={item.path}
+              href={item.path}
+              onClick={onClose}
+              className={`${styles.navItem} ${
+                pathname === item.path ? styles.active : ''
+              }`}
+            >
+              <span className={styles.icon}>{item.icon}</span>
+              <span>{item.name}</span>
+            </Link>
+          ))}
+        </nav>
+
+        <div className={styles.footer}>
+          <button onClick={() => signOut({ callbackUrl: '/admin/login' })} className={styles.logoutBtn}>
+            <span className={styles.icon}>→</span>
+            <span>Logout</span>
+          </button>
+        </div>
+      </aside>
+    </>
   );
 }

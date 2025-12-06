@@ -159,4 +159,50 @@
   .sidebar.open {
     transform: translateX(0);
   }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(2px);
+    z-index: 900;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.closeBtn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #1d1d1f;
+  cursor: pointer;
+  padding: 4px;
+}
+
+@media (max-width: 1024px) {
+  .closeBtn {
+    display: block;
+  }
+  
+  .logo {
+    margin-bottom: 0;
+  }
 }
