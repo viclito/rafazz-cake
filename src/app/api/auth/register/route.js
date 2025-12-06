@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
 import connectDB from '@/lib/mongodb';
 import Admin from '@/models/Admin';
-import { sendVerificationEmail } from '@/lib/resend';
+import { sendAdminApprovalEmail } from '@/lib/resend';
 
 export async function POST(request) {
   try {
@@ -57,19 +57,28 @@ export async function POST(request) {
       isVerified: autoVerify, // Auto-verify in dev mode without Resend
     });
 
-    // Send verification email (only if not auto-verified)
+    // Send verification/approval email (only if not auto-verified)
     if (!autoVerify) {
-      const emailResult = await sendVerificationEmail(email, verificationToken);
+      const adminEmail = process.env.ADMIN_EMAIL;
+      
+      if (!adminEmail) {
+        console.error('ADMIN_EMAIL is not defined in environment variables');
+        // Fallback: send to the user themselves (original behavior) or fail?
+        // For safety, let's log error and maybe try to send to user as fallback or just fail to send
+        // But user request is strict: "That should not be the case". 
+        // So we will assume ADMIN_EMAIL must be there.
+      } else {
+        const emailResult = await sendAdminApprovalEmail(adminEmail, name, email, verificationToken);
 
-      if (!emailResult.success) {
-        console.error('Failed to send verification email:', emailResult.error);
-        // Still return success as admin was created
+        if (!emailResult.success) {
+          console.error('Failed to send approval email:', emailResult.error);
+        }
       }
     }
 
     const message = autoVerify 
       ? 'Admin registered successfully! You can now log in immediately (auto-verified in development mode).'
-      : 'Admin registered successfully. Please check your email to verify your account.';
+      : 'Registration successful! Your account is pending approval from the Super Admin. You will be notified once approved.';
 
     return NextResponse.json(
       {

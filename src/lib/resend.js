@@ -5,14 +5,17 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 /**
  * Send verification email to new admin
  */
-export async function sendVerificationEmail(email, verificationToken) {
+/**
+ * Send approval email to Super Admin (ADMIN_EMAIL)
+ */
+export async function sendAdminApprovalEmail(adminEmail, newAdminName, newAdminEmail, verificationToken) {
   try {
     const verificationUrl = `${process.env.NEXTAUTH_URL}/admin/verify?token=${verificationToken}`;
     
     const { data, error } = await resend.emails.send({
       from: 'Rafazz Admin <onboarding@resend.dev>',
-      to: [email],
-      subject: 'Verify Your Admin Account',
+      to: [adminEmail],
+      subject: 'ACTION REQUIRED: Approve New Admin Registration',
       html: `
         <!DOCTYPE html>
         <html>
@@ -21,6 +24,7 @@ export async function sendVerificationEmail(email, verificationToken) {
               body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
               .container { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
               .header { text-align: center; margin-bottom: 40px; }
+              .card { background: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0; }
               .button { 
                 display: inline-block; 
                 padding: 14px 32px; 
@@ -36,17 +40,28 @@ export async function sendVerificationEmail(email, verificationToken) {
           <body>
             <div class="container">
               <div class="header">
-                <h1>Welcome to Rafazz Admin</h1>
+                <h1>New Admin Registration Request</h1>
               </div>
-              <p>Thank you for registering as an admin. Please verify your email address to activate your account.</p>
+              
+              <p>A new user has requested admin access. Please review the details below and approve or ignore.</p>
+              
+              <div class="card">
+                <p><strong>Name:</strong> ${newAdminName}</p>
+                <p><strong>Email:</strong> ${newAdminEmail}</p>
+                <p><strong>Time:</strong> ${new Date().toLocaleString()}</p>
+              </div>
+
+              <p>To approve this user and allow them to log in, click the button below:</p>
+              
               <p style="text-align: center; margin: 40px 0;">
-                <a href="${verificationUrl}" class="button">Verify Email Address</a>
+                <a href="${verificationUrl}" class="button">Approve & Verify Account</a>
               </p>
+              
               <p>Or copy and paste this link into your browser:</p>
               <p style="word-break: break-all; color: #666;">${verificationUrl}</p>
+              
               <div class="footer">
-                <p>This link will expire in 24 hours.</p>
-                <p>If you didn't request this, please ignore this email.</p>
+                <p>If you don't recognize this user, please ignore this email.</p>
               </div>
             </div>
           </body>

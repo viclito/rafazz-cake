@@ -50,7 +50,7 @@ export default function AdminRegister() {
         return;
       }
 
-      toast.success('Registration successful! Please check your email to verify your account.');
+      toast.success(data.message || 'Registration successful! Your account is pending approval.');
       setTimeout(() => {
         router.push('/admin/login');
       }, 2000);
