@@ -2,22 +2,23 @@ import CakeHero from '@/components/canvas/CakeHero';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './page.module.css';
+import connectDB from '@/lib/mongodb';
+import HomeImage from '@/models/HomeImage';
 
 import OffersSection from '@/components/home/OffersSection';
 
 async function getHomeImages() {
   try {
-    const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000';
-    const response = await fetch(`${baseUrl}/api/home-images`, {
-      cache: 'no-store',
-    });
+    await connectDB();
+    const images = await HomeImage.find({ isActive: true }).sort({ position: 1 }).lean();
     
-    if (!response.ok) {
-      throw new Error('Failed to fetch images');
-    }
-    
-    const data = await response.json();
-    return data.images || [];
+    // Convert _id and other non-serializable fields to strings
+    return images.map(img => ({
+      ...img,
+      _id: img._id.toString(),
+      createdAt: img.createdAt?.toString(),
+      updatedAt: img.updatedAt?.toString(),
+    }));
   } catch (error) {
     console.error('Error fetching home images:', error);
     return [];
